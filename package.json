@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "express": "4.18.2"
+  },
+  "name": "tasking-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "^8.26.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "nodemon": "^2.0.20",
+    "prettier": "^2.7.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
