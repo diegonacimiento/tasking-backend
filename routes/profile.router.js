@@ -1,20 +1,22 @@
 import express from "express";
 import passport from "passport";
-import tasksService from "../services/tasks.service.js";
+import usersService from "../services/usuarios.service.js";
 
 const router = express.Router();
-const service = new tasksService();
+const service = new usersService();
 
 router.get(
-  "mis-tareas",
+  "mi-perfil",
   passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
       const user = req.user;
-      const tasks = await service.search(user.sub);
+      const myUser = await service.search(user.sub);
       res.json(tasks);
     } catch (error) {
       next(error);
     };
   }
   );
+
+

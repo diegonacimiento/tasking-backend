@@ -1,34 +1,73 @@
 import express from 'express';
 import passport from 'passport';
-import jwt from 'jsonwebtoken';
-import { config } from '../config/config.js';
+import authService from '../services/auth.service.js';
+import validatorHandler from '../middlewares/validator.handler.js';
+import { updateUser, recoveryUser } from '../schemas/usuarios.schema.js';
 
 const router = express.Router();
+const service = new authService();
 
 router.post(
   '/login',
   passport.authenticate('local', { session: false }),
   async (req, res, next) => {
     try {
-
       const user = req.user;
+      res.json(await service.signToken(user));
+    } catch (error) {
+      next(error);
+    }
+  }
+);
 
-      const payload = {
-        sub: user.id,
-      };
+router.post(
+  '/recoveryPassword',
+  async (req, res, next) => {
+    try {
+      const { email } = req.body;
 
-      const token = jwt.sign(payload, config.jwtSecret);
+      const response = await service.sendRecovery(email);
 
-      res.json({
+      res.json(response);
+    } catch (error) {
+      next(error);
+    };
+  }
+);
+
+router.post(
+  '/newPassword',
+  validatorHandler(updateUser, "body"),
+  async (req, res, next) => {
+    try {
+      const { token, newPassword } = req.body;
+      const response = await service.changePassword(token, newPassword);
+      res.json(response);
+    } catch (error) {
+      next(error);;
+    };
+  }
+);
+
+router.post(
+  "/recoveryUser",
+  validatorHandler(recoveryUser, "body"),
+  async (req, res, next) => {
+    try {
+      const { email, password } = req.body;
+
+      const user = await service.recoveryUser(email, password);
+
+      res.status(201).json({
+        message: "Usuario recuperado",
         user,
-        token,
       });
 
     } catch (error) {
 
       next(error);
 
-    }
+    };
   }
 );
 

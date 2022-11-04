@@ -1,7 +1,6 @@
 import express from 'express';
 import usersService from '../services/usuarios.service.js';
 import {
-  searchUser,
   createUser,
   updateUser,
 } from '../schemas/usuarios.schema.js';
@@ -12,13 +11,12 @@ const router = express.Router();
 const service = new usersService();
 
 router.get(
-  '/:id',
-  validatorHandler(searchUser, 'params'),
+  '/',
   passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const user = await service.searchId(id);
+      const userId = req.user.sub;
+      const user = await service.searchId(userId);
       res.json(user);
     } catch (error) {
       next(error);
@@ -44,14 +42,14 @@ router.post(
 );
 
 router.put(
-  '/:id',
-  validatorHandler(updateUser, 'params'),
+  '/editar',
+  passport.authenticate("jwt", { session:false }),
   validatorHandler(updateUser, 'body'),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
+      const userId = req.user.sub;
       const body = req.body;
-      const updateUser = await service.update(id, body);
+      const updateUser = await service.update(userId, body);
       res.json({
         message: 'Usuario actualizado',
         updateUser,
@@ -63,15 +61,15 @@ router.put(
 );
 
 router.delete(
-  '/:id',
-  validatorHandler(searchUser, 'params'),
+  '/eliminar',
+  passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      await service.delete(id);
+      const userId = req.user.sub;
+      await service.delete(userId);
       res.json({
         message: 'Usuario eliminado',
-        id,
+        userId,
       });
     } catch (error) {
       next(error);

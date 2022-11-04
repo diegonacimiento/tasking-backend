@@ -23,11 +23,25 @@ const UserSchema = {
     type: DataTypes.STRING,
     defaultValue: "light",
   },
-  createAt: {
+  recoveryToken: {
+    field: "recovery_token",
+    allowNull: true,
+    type: DataTypes.STRING,
+  },
+  createdAt: {
+    field: "created_at",
     allowNull: false,
     type: DataTypes.DATE,
-    field: "create-at",
-    defaultValue: Sequelize.NOW,
+  },
+  updatedAt: {
+    field: "updated_at",
+    allowNull: true,
+    type: DataTypes.DATE,
+  },
+  deletedAt: {
+    field: "deleted_at",
+    allowNull: true,
+    type: DataTypes.DATE,
   },
 };
 
@@ -45,7 +59,7 @@ class User extends Model {
       sequelize,
       tableName: USER_TABLE,
       modelName: "User",
-      timestamps: false,
+      paranoid: true,
     };
   };
 };

@@ -19,8 +19,14 @@ const TaskSchema = {
     allowNull: true,
     type: DataTypes.STRING,
   },
+  createAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: "create_at",
+    defaultValue: Sequelize.NOW,
+  },
   userId: {
-    field: "user-id",
+    field: "user_id",
     allowNull: false,
     type: DataTypes.STRING,
     references: {

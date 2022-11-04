@@ -9,12 +9,15 @@ class usersService {
   async searchId(id) {
     const user = await models.User.findByPk(id);
     if(!user) throw boom.notFound("El usuario no existe");
+    delete user.dataValues.password;
+    delete user.dataValues.recoveryToken;
     return user;
   };
 
   async searchEmail(email) {
     const user = await models.User.findOne({
       where: {email,},
+      paranoid: false,
     });
     return user;
   };
@@ -26,6 +29,7 @@ class usersService {
       password: hash,
     });
     delete newUser.dataValues.password;
+    delete newUser.dataValues.recoveryToken;
     return newUser;
   };
 

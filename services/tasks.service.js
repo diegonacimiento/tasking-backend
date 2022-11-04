@@ -12,13 +12,19 @@ class tasksService {
     return tasks;
   };
 
-  async searchId(userId, title) {
+  async searchTitle(userId, title) {
     const tasksAll = await this.search(userId);
     const tasks = tasksAll.filter(task =>{
       return task.title.includes(title);
     });
     if(tasks.length == 0) throw boom.notFound("La tarea no existe");
     return tasks;
+  };
+
+  async searchId(id) {
+    const task = await models.Task.findByPk(id);
+    if(!task) throw boom.notFound("La tarea no existe");
+    return task;
   };
 
   async create(userId, body) {
@@ -29,8 +35,9 @@ class tasksService {
     return task;
   };
 
-  async update(id, body) {
+  async update(id, body, userId) {
     const task = await this.searchId(id);
+    if(task.userId != userId) throw boom.unauthorized();
     const updateTask = await task.update({
       ...task,
       ...body,
@@ -38,8 +45,9 @@ class tasksService {
     return updateTask;
   };
 
-  async delete(id) {
+  async delete(id, userId) {
     const task = await this.searchId(id);
+    if(task.userId != userId) throw boom.unauthorized();
     await task.destroy();
     return id;
   };

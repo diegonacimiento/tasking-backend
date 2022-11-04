@@ -1,7 +1,7 @@
 import Joi from 'joi';
 
 const id = Joi.number().integer();
-const title = Joi.string().min(3).max(30);
+const title = Joi.string().min(1).max(30);
 const description = Joi.string().max(500);
 
 const searchTask = Joi.object({
