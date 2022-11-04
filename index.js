@@ -10,7 +10,8 @@ import checkApiKey from './middlewares/auth.handler.js';
 import "./utils/auth/index.js";
 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
+;
 
 app.listen(PORT, () => {
   console.log('Servidor levantado en el puerto: ' + PORT);
