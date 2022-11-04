@@ -20,7 +20,7 @@ app.listen(PORT, () => {
 app.use(express.json());
 app.use(express.text());
 
-app.get('/', checkApiKey, (req, res) => {
+app.get('/', (req, res) => {
   res.send('Hola');
 });
 
