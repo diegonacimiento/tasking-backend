@@ -6,15 +6,18 @@ import {
   updateTask,
 } from "../schemas/tasks.schema.js";
 import validatorHandler from "../middlewares/validator.handler.js";
+import passport from "passport";
 
 const router = express.Router();
 const service = new tasksService();
 
 router.get(
   "/",
+  passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
-      const tasks = await service.search();
+      const user = req.user;
+      const tasks = await service.search(user.sub);
       res.json(tasks);
     } catch (error) {
       next(error);
@@ -23,13 +26,15 @@ router.get(
 );
 
 router.get(
-  "/:id",
-  validatorHandler(searchTask, "params"),
+  "/task",
+  passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
-      const { id } = req.params;
-      const task = await service.searchId(id);
-      res.json(task);
+      const user = req.user;
+      const { title } = req.query;
+      console.log(title)
+      const tasks = await service.searchId(user.sub, title);
+      res.json(tasks);
     } catch (error) {
       next(error);
     };
@@ -38,11 +43,13 @@ router.get(
 
 router.post(
   "/create",
+  passport.authenticate("jwt", { session:false }),
   validatorHandler(createTask, "body"),
   async (req, res, next) => {
     try {
+      const user = req.user;
       const body = req.body;
-      const newTask = await service.create(body);
+      const newTask = await service.create(user.sub, body);
       res.status(201).json({
         message: "Tarea creada",
         newTask,

@@ -1,5 +1,7 @@
 import express from 'express';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
+import { config } from '../config/config.js';
 
 const router = express.Router();
 
@@ -9,7 +11,18 @@ router.post(
   async (req, res, next) => {
     try {
 
-      res.json(req.user);
+      const user = req.user;
+
+      const payload = {
+        sub: user.id,
+      };
+
+      const token = jwt.sign(payload, config.jwtSecret);
+
+      res.json({
+        user,
+        token,
+      });
 
     } catch (error) {
 

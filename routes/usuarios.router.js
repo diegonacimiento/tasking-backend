@@ -6,6 +6,7 @@ import {
   updateUser,
 } from '../schemas/usuarios.schema.js';
 import validatorHandler from '../middlewares/validator.handler.js';
+import passport from 'passport';
 
 const router = express.Router();
 const service = new usersService();
@@ -13,6 +14,7 @@ const service = new usersService();
 router.get(
   '/:id',
   validatorHandler(searchUser, 'params'),
+  passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
       const { id } = req.params;

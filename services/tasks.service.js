@@ -5,19 +5,27 @@ const { models } = sequelize;
 class tasksService {
   constructor() {};
 
-  async search() {
-    const tasks = await models.Task.findAll();
+  async search(userId) {
+    const tasks = await models.Task.findAll({
+      where: {userId,}
+    });
     return tasks;
   };
 
-  async searchId(id) {
-    const task = await models.Task.findByPk(id);
-    if(!task) throw boom.notFound("La tarea no existe");
-    return task;
+  async searchId(userId, title) {
+    const tasksAll = await this.search(userId);
+    const tasks = tasksAll.filter(task =>{
+      return task.title.includes(title);
+    });
+    if(tasks.length == 0) throw boom.notFound("La tarea no existe");
+    return tasks;
   };
 
-  async create(body) {
-    const task = await models.Task.create(body);
+  async create(userId, body) {
+    const task = await models.Task.create({
+      ...body,
+      userId,
+    });
     return task;
   };
 

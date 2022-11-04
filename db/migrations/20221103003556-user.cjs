@@ -14,7 +14,7 @@ module.exports = {
   down: async (queryInterface) => {
     const { USER_TABLE } = await modelUser;
     const { TASK_TABLE } = await modelTask;
-    await queryInterface.dropTable(USER_TABLE);
     await queryInterface.dropTable(TASK_TABLE);
+    await queryInterface.dropTable(USER_TABLE);
   }
 };
