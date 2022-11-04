@@ -1,5 +1,6 @@
 import sequelize from '../libs/sequelize.js';
 import boom from '@hapi/boom';
+import bcrypt from "bcrypt";
 const { models } = sequelize;
 
 class usersService {
@@ -11,8 +12,20 @@ class usersService {
     return user;
   };
 
+  async searchEmail(email) {
+    const user = await models.User.findOne({
+      where: {email,},
+    });
+    return user;
+  };
+
   async create(body) {
-    const newUser = await models.User.create(body);
+    const hash = await bcrypt.hash(body.password, 10);
+    const newUser = await models.User.create({
+      ...body,
+      password: hash,
+    });
+    delete newUser.dataValues.password;
     return newUser;
   };
 
