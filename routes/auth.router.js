@@ -57,7 +57,6 @@ router.post(
       const { email, password } = req.body;
 
       const user = await service.recoveryUser(email, password);
-      console.log(user)
 
       res.status(201).json({
         message: "Usuario recuperado",
