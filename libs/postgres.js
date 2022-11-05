@@ -6,7 +6,7 @@ async function getConnection() {
     host: "localhost",
     port: "5432",
     user: "diego",
-    password: "43332657iv",
+    password: "admin123",
     database: "tasking"
   });
   await client.connect();
