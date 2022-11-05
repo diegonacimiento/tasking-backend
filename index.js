@@ -30,5 +30,5 @@ routerApi(app);
 
 app.use(logErr);
 app.use(ormErrorHandler);
-app.use(errorHandler);
 app.use(boomErrorHandler);
+app.use(errorHandler);
