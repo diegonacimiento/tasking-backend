@@ -98,9 +98,15 @@ class authService {
 
   async recoveryUser(email, password) {
     const user = await service.searchEmail(email);
+    if(user.dataValues.deletedAt == null) throw boom.badRequest();
     if(!user) throw boom.notFound();
     const isMatch = await bcrypt.compare(password, user.password);
-    if(isMatch) {await user.restore()} else throw boom.unauthorized();
+    if(isMatch) {
+      await user.restore();
+      delete user.dataValues.password;
+      delete user.dataValues.recoveryToken;
+      return user;
+    } else throw boom.unauthorized();
   };
 
 };
