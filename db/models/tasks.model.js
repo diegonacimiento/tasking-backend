@@ -11,13 +11,14 @@ const TaskSchema = {
     autoIncrement: true,
     unique: true,
   },
-  title: {
+  description: {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  description: {
-    allowNull: true,
+  status: {
+    allowNull: false,
     type: DataTypes.STRING,
+    defaultValue: "pendiente",
   },
   createAt: {
     allowNull: false,
