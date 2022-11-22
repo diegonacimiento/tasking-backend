@@ -18,10 +18,10 @@ const UserSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  mode: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    defaultValue: "light",
+  taskId: {
+    field: "task_id",
+    allowNull: true,
+    type: DataTypes.INTEGER,
   },
   recoveryToken: {
     field: "recovery_token",
