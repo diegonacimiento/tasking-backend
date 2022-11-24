@@ -60,7 +60,7 @@ class usersService {
     delete updateUser.dataValues.password;
     delete updateUser.dataValues.recoveryToken;
 
-    return updateUser;
+    return {message: "Contraseña actualizada"};
   };
 
   async delete(id) {

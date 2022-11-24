@@ -4,6 +4,9 @@ import jwt from "jsonwebtoken";
 import boom from "@hapi/boom";
 import usersService from "./usuarios.service.js";
 import { config } from "../config/config.js";
+import sequelize from '../libs/sequelize.js';
+const { models } = sequelize;
+
 
 const service = new usersService();
 
@@ -75,13 +78,14 @@ class authService {
     return response;
   };
 
-  async changePassword(token, newPassword) {
+  async changePassword(recoveryToken, newPassword) {
+
     try {
-      const payload = jwt.verify(token, config.jwtSecretRecovery);
+      const payload = jwt.verify(recoveryToken, config.jwtSecretRecovery);
 
-      const user = await service.searchId(payload.sub);
+      const user = await models.User.findByPk(payload.sub);
 
-      if(user.recoveryToken !== token) throw boom.unauthorized();
+      if(user.recoveryToken !== recoveryToken) throw boom.unauthorized();
 
       const hash = await bcrypt.hash(newPassword, 10);
 

@@ -30,9 +30,14 @@ const recoveryUser = Joi.object({
 });
 
 const recoveryPassword = Joi.object({
+  recoveryToken,
+  newPassword,
+});
+
+const updatePassword = Joi.object({
   password,
   newPassword,
   confirmNewPassword,
 });
 
-export { searchUser, createUser, updateUser, recoveryUser, recoveryPassword };
+export { searchUser, createUser, updateUser, recoveryUser, recoveryPassword, updatePassword };

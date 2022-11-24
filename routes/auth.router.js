@@ -2,7 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import authService from '../services/auth.service.js';
 import validatorHandler from '../middlewares/validator.handler.js';
-import { updateUser, recoveryUser } from '../schemas/usuarios.schema.js';
+import { updateUser, recoveryUser, recoveryPassword } from '../schemas/usuarios.schema.js';
 
 const router = express.Router();
 const service = new authService();
@@ -37,11 +37,11 @@ router.post(
 
 router.post(
   '/newPassword',
-  validatorHandler(updateUser, "body"),
+  validatorHandler(recoveryPassword, "body"),
   async (req, res, next) => {
     try {
-      const { token, newPassword } = req.body;
-      const response = await service.changePassword(token, newPassword);
+      const { recoveryToken, newPassword } = req.body;
+      const response = await service.changePassword(recoveryToken, newPassword);
       res.json(response);
     } catch (error) {
       next(error);;
