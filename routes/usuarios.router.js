@@ -3,6 +3,7 @@ import usersService from '../services/usuarios.service.js';
 import {
   createUser,
   updateUser,
+  recoveryPassword,
 } from '../schemas/usuarios.schema.js';
 import validatorHandler from '../middlewares/validator.handler.js';
 import passport from 'passport';
@@ -53,6 +54,25 @@ router.put(
       res.json({
         message: 'Usuario actualizado',
         updateUser,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.put(
+  '/editar-password',
+  passport.authenticate("jwt", { session:false }),
+  validatorHandler(recoveryPassword, 'body'),
+  async (req, res, next) => {
+    try {
+      const userId = req.user.sub;
+      const body = req.body;
+      const user = await service.updatePassword(userId, body);
+      res.json({
+        message: 'Contraseña actualizada',
+        user,
       });
     } catch (error) {
       next(error);

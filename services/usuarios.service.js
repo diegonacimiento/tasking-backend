@@ -1,6 +1,6 @@
 import sequelize from '../libs/sequelize.js';
 import boom from '@hapi/boom';
-import bcrypt from "bcrypt";
+import bcrypt, { hash } from "bcrypt";
 const { models } = sequelize;
 
 class usersService {
@@ -39,6 +39,27 @@ class usersService {
       ...user,
       ...body,
     });
+    return updateUser;
+  };
+
+  async updatePassword(id, body) {
+    const user = await models.User.findByPk(id);
+    const isMatch = await bcrypt.compare(body.password, user.password);
+    if(!isMatch) throw boom.unauthorized("Contraseña incorrecta");
+
+    const confirmPassword = (body.newPassword === body.confirmNewPassword);
+    if(!confirmPassword) throw boom.badRequest("Las contraseñas no coinciden");
+
+    const hash = await bcrypt.hash(body.newPassword, 10);
+
+    const updateUser = await user.update({
+      ...user,
+      password: hash,
+    });
+
+    delete updateUser.dataValues.password;
+    delete updateUser.dataValues.recoveryToken;
+
     return updateUser;
   };
 

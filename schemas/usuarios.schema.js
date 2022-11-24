@@ -4,7 +4,8 @@ const id = Joi.string().min(2).max(30);
 const email = Joi.string().min(6).email();
 const password = Joi.string().min(6).max(100);
 const newPassword = Joi.string().min(6).max(100);
-const token = Joi.string();
+const confirmNewPassword = Joi.string().min(6).max(100);
+const recoveryToken = Joi.string();
 const taskId = Joi.number();
 
 const searchUser = Joi.object({
@@ -20,9 +21,6 @@ const createUser = Joi.object({
 const updateUser = Joi.object({
   id,
   email,
-  password,
-  newPassword,
-  token,
   taskId,
 });
 
@@ -31,4 +29,10 @@ const recoveryUser = Joi.object({
   password: password.required(),
 });
 
-export { searchUser, createUser, updateUser, recoveryUser };
+const recoveryPassword = Joi.object({
+  password,
+  newPassword,
+  confirmNewPassword,
+});
+
+export { searchUser, createUser, updateUser, recoveryUser, recoveryPassword };
