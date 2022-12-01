@@ -12,6 +12,18 @@ const router = express.Router();
 const service = new usersService();
 
 router.get(
+  '/all',
+  async (req, res, next) => {
+    try {
+      const user = await service.searchAll(userId);
+      res.json(user);
+    } catch (error) {
+      next(error);
+    }
+  }
+);
+
+router.get(
   '/',
   passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {

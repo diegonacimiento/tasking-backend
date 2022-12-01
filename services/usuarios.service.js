@@ -6,6 +6,12 @@ const { models } = sequelize;
 class usersService {
   constructor() {};
 
+  async searchAll() {
+    const user = await models.User.findAll();
+    if(!user) throw boom.notFound("El usuario no existe");
+    return user;
+  };
+
   async searchId(id) {
     const user = await models.User.findByPk(id);
     if(!user) throw boom.notFound("El usuario no existe");
