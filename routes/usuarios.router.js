@@ -15,7 +15,7 @@ router.get(
   '/all',
   async (req, res, next) => {
     try {
-      const user = await service.searchAll(userId);
+      const user = await service.searchAll();
       res.json(user);
     } catch (error) {
       next(error);
