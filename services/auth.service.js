@@ -62,7 +62,7 @@ class authService {
 
     const token = jwt.sign(payload, config.jwtSecretRecovery, { expiresIn: "15 min" });
 
-    const link = `https://diegonac.github.io/tasking-frontend/recovery-change-password?token=${token}`;
+    const link = `https://tasking-dn.vercel.app/recovery-change-password?token=${token}`;
 
     await service.update(user.id, {recoveryToken: token});
 
