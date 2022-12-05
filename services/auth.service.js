@@ -30,7 +30,7 @@ class authService {
     };
 
     const jwtConfig = {
-      expiresIn: '1min',
+      expiresIn: '3d',
     };
 
     const token = jwt.sign(payload, config.jwtSecret, jwtConfig);
