@@ -29,7 +29,11 @@ class authService {
       sub: user.id,
     };
 
-    const token = jwt.sign(payload, config.jwtSecret);
+    const jwtConfig = {
+      expiresIn: '3d',
+    };
+
+    const token = jwt.sign(payload, config.jwtSecret, jwtConfig);
 
     return {
       user,
