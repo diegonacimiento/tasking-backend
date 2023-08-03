@@ -8,7 +8,7 @@ function routerApi(app) {
   app.use("/api/v1", router);
 
   router.use("/users", usersRouter);
-  router.use("/tareas", tasksRouter);
+  router.use("/tasks", tasksRouter);
   router.use("/auth", authRouter);
 };
 

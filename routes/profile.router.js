@@ -6,7 +6,7 @@ const router = express.Router();
 const service = new usersService();
 
 router.get(
-  "mi-perfil",
+  "my-perfil",
   passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {

@@ -43,7 +43,7 @@ router.post(
 );
 
 router.put(
-  '/editar',
+  '/update',
   passport.authenticate("jwt", { session:false }),
   validatorHandler(updateUser, 'body'),
   async (req, res, next) => {
@@ -62,7 +62,7 @@ router.put(
 );
 
 router.put(
-  '/editar-password',
+  '/change-password',
   passport.authenticate("jwt", { session:false }),
   validatorHandler(updatePassword, 'body'),
   async (req, res, next) => {
@@ -78,7 +78,7 @@ router.put(
 );
 
 router.delete(
-  '/eliminar',
+  '/delete',
   passport.authenticate("jwt", { session:false }),
   async (req, res, next) => {
     try {
