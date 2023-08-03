@@ -2,7 +2,7 @@ import nodemailer from "nodemailer";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import boom from "@hapi/boom";
-import usersService from "./usuarios.service.js";
+import usersService from "./users.service.js";
 import { config } from "../config/config.js";
 import sequelize from '../libs/sequelize.js';
 const { models } = sequelize;

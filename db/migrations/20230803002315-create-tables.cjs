@@ -1,6 +1,6 @@
 'use strict';
 
-const modelUser = import("../models/usuarios.model.js");
+const modelUser = import("../models/users.model.js");
 const modelTask = import("../models/tasks.model.js");
 
 module.exports = {

@@ -1,10 +1,10 @@
 import express from 'express';
-import usersService from '../services/usuarios.service.js';
+import usersService from '../services/users.service.js';
 import {
   createUser,
   updateUser,
   updatePassword,
-} from '../schemas/usuarios.schema.js';
+} from '../schemas/users.schema.js';
 import validatorHandler from '../middlewares/validator.handler.js';
 import passport from 'passport';
 

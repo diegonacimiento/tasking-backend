@@ -37,7 +37,7 @@ class tasksService {
 
   async update(id, body, userId) {
     const task = await this.searchId(id);
-    if(task.userId != userId) throw boom.unauthorized();
+    if(task.userId !== userId) throw boom.unauthorized();
     const updateTask = await task.update({
       ...task,
       ...body,
@@ -47,7 +47,7 @@ class tasksService {
 
   async delete(id, userId) {
     const task = await this.searchId(id);
-    if(task.userId != userId) throw boom.unauthorized();
+    if(task.userId !== userId) throw boom.unauthorized();
     await task.destroy();
     return id;
   };

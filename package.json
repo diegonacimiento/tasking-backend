@@ -37,7 +37,7 @@
     "migrations:delete": "sequelize-cli db:migrate:undo:all"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "Diego Nacimiento",
+  "license": "MIT",
   "description": ""
 }

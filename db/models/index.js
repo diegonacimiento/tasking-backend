@@ -1,4 +1,4 @@
-import { User, UserSchema } from "./usuarios.model.js";
+import { User, UserSchema } from "./users.model.js";
 import { Task, TaskSchema } from './tasks.model.js';
 
 function setupModels(sequelize) {

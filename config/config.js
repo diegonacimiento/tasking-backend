@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
 dotenv.config();
 const config = {
-  env: process.env.NODE_ENV || "dev",
+  env: process.env.NODE_ENV || "development",
   isProd: process.env.NODE_ENV === "production",
-	port: process.env.PORT || 3001,
+	port: process.env.PORT || 3000,
 	dbUser: process.env.DB_USER,
 	dbPassword: process.env.DB_PASSWORD,
 	dbHost: process.env.DB_HOST,
@@ -14,6 +14,6 @@ const config = {
   ggMail: process.env.GGMAIL,
   ggKey: process.env.GGKEY,
   jwtSecretRecovery: process.env.JWT_SECRET_RECOVERY,
-  dbUrl: process.env.DATABASE_URL,
+  dbUrl: process.env.DB_URL,
 };
 export { config };

@@ -1,5 +1,5 @@
 import { Model, DataTypes, Sequelize } from 'sequelize';
-import { USER_TABLE } from './usuarios.model.js';
+import { USER_TABLE } from './users.model.js';
 
 const TASK_TABLE = "tasks";
 
@@ -15,10 +15,10 @@ const TaskSchema = {
     allowNull: false,
     type: DataTypes.STRING,
   },
-  status: {
+  isComplete: {
     allowNull: false,
-    type: DataTypes.STRING,
-    defaultValue: "pendiente",
+    type: DataTypes.BOOLEAN,
+    defaultValue: false,
   },
   createAt: {
     allowNull: false,

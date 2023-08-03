@@ -2,7 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import authService from '../services/auth.service.js';
 import validatorHandler from '../middlewares/validator.handler.js';
-import { updateUser, recoveryUser, recoveryPassword } from '../schemas/usuarios.schema.js';
+import { updateUser, recoveryUser, recoveryPassword } from '../schemas/users.schema.js';
 
 const router = express.Router();
 const service = new authService();

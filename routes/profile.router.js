@@ -1,6 +1,6 @@
 import express from "express";
 import passport from "passport";
-import usersService from "../services/usuarios.service.js";
+import usersService from "../services/users.service.js";
 
 const router = express.Router();
 const service = new usersService();

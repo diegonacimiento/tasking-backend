@@ -2,7 +2,7 @@ import Joi from 'joi';
 
 const id = Joi.number().integer();
 const description = Joi.string().max(500);
-const status = Joi.string();
+const isComplete = Joi.boolean();
 
 const searchTask = Joi.object({
   id: id.required(),
@@ -14,7 +14,7 @@ const createTask = Joi.object({
 
 const updateTask = Joi.object({
   description,
-  status,
+  isComplete,
 });
 
 export { searchTask, createTask, updateTask };

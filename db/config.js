@@ -1,6 +1,5 @@
 import { config } from "../config/config.js";
 
-
 export default {
   development: {
     url: config.dbUrl,
