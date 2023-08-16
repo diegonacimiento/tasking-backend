@@ -19,7 +19,7 @@ async function sendMail() {
       user: "diegonacimientoJWT@gmail.com",
 
       // Pegamos la contraseña que nos dió google:
-      pass: "zicmkpfoqlcxssuf",
+      pass: "...",
     },
   });
 
