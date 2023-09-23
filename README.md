@@ -11,6 +11,7 @@ Es necesario tener instalado Docker [descargar Docker](https://www.docker.com/pr
 Una vez instalado debemos abrir Docker y dejarlo abierto
 
 En el archivo docker.compose-yml configuramos un usuario y contraseña:
+```javascript
 ´version: '3.3'
 services:
   postgres:
@@ -30,13 +31,13 @@ services:
       - PGADMIN_DEFAULT_PASSWORD=root #ponemos una contraseña
     ports:
       - 5050:80´
-
+```
 # Instalación de dependencias
-´npm install´
+``` bash npm install ```
 
 # Variables de entorno:
 Se debe crear un archivo .env y agregar tus variables de entorno con la siguiente sintaxis:
-´
+```
 PORT=3000
 POSTGRES_USER="diego" 
 POSTGRES_PASSWORD="1234admin"
@@ -49,7 +50,7 @@ GGMAIL=""
 GGKEY=""
 JWT_SECRET=""
 JWT_SECRET_RECOVERY=""
-´
+```
 
 Para las variables:
 Las que empiezan con POSTGRES debemos poner lo datos que pusimos en el archivo docker-compose.yml
@@ -66,10 +67,10 @@ GGKEY: aquí ponemos la contraseña generada, no la compartas con nadie!
 JWT_SECRET y JWT_SECRET_RECOVERY: también debemos establecer una clave, lo podemos hacer con el siguiente link (generar clave)[https://keygen.io/#fakeLink]. Debemos generar claves diferentes para cada variable
 
 # Iniciar contenedor en Docker
-´
+```
 docker-compose up -d postgres
 docker-compose up -d pgadmin
-´
+```
 # Iniciar proyecto
-´npm run dev´
+```bash npm run dev```
 
