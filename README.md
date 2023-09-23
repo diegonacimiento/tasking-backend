@@ -61,7 +61,7 @@ Las que empiezan con POSTGRES debemos rellenar con lo datos que establecimos en 
 
 - API_KEY: debemos establecer nosotros una clave a elección
 
-- JWT_SECRET y JWT_SECRET_RECOVERY: también debemos establecer una clave, lo podemos hacer con el siguiente link [generar clave](https://keygen.io/#fakeLink). Debemos generar claves diferentes para cada variable
+- JWT_SECRET y JWT_SECRET_RECOVERY: debemos establecer una clave para cada variable, lo podemos hacer con el siguiente link [generar clave](https://keygen.io/#fakeLink/)
 
 #### Envío de email
 
