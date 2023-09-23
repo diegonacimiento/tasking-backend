@@ -36,7 +36,7 @@ services:
 ## Instalación de dependencias
 ``` npm install ```
 
-## Variables de entorno:
+## Variables de entorno
 Se debe crear un archivo ".env" y agregar tus variables de entorno con la siguiente sintaxis:
 ```
 PORT=3000
@@ -53,7 +53,7 @@ JWT_SECRET=""
 JWT_SECRET_RECOVERY=""
 ```
 
-### Para las variables:
+### Para las variables
 
 Las que empiezan con POSTGRES debemos rellenar con lo datos que establecimos en el archivo "docker-compose.yml"
 
