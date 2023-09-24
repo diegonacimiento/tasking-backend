@@ -2,7 +2,7 @@
 API REST con Express.js conectada a base de datos PostgreSQL mediante contenedor de Docker. Permite crear, leer, actualizar y borrar tareas y también usuarios. Cuenta además con autorización y autenticación mediante JWT y Passport.js para una experiencia segura
 
 ## Clonación del proyecto
-En primer hay que clonar el proyecto en el directorio que desees
+En primer lugar hay que clonar el proyecto en el directorio que desees
 
 ```git clone https://github.com/diegonac/tasking-backend.git```
 
