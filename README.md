@@ -1,17 +1,32 @@
 # tasking-backend
-API REST con Express.js conectada a base de datos PostgreSQL mediante contenedor de Docker. Permite crear, leer, actualizar y borrar tareas y también usuarios. Cuenta además con autorización y autenticación mediante JWT y Passport.js para una experiencia segura
+Welcome to the Tasking backend documentation, where you will find essential information on how to set up and use my REST API built with Express.js. This API is designed to work seamlessly with a PostgreSQL database in a Docker container. Tasking allows you to perform tasks such as creating, reading, updating, and deleting tasks and users. It also provides robust authorization and authentication through JWT and Passport.js, ensuring a secure user experience.
 
-## Clonación del proyecto
-En primer lugar hay que clonar el proyecto en el directorio que desees
+[Documentación en español](README-es.md)
+
+***
+
+## Table of contents
+[Clone the project](#clone-the-project)
+[Docker setup](#docker-setup)
+[Dependency installation](#dependency-installation)
+[Environment variables](#environment-variables)
+[Running Docker containers](#Running-Docker-containers)
+[Starting the project](#Starting-the-project)
+
+***
+
+## Clone the project
+To get started, you'll need to clone the project repository into your desired directory. Use the following command:
 
 ```git clone https://github.com/diegonacimiento/tasking-backend.git```
 
-## Docker
-Es necesario tener instalado Docker, [descargar Docker](https://www.docker.com/products/docker-desktop/)
+***
 
-Una vez instalado debemos abrir Docker y dejarlo abierto
+## Docker setup
+Tasking relies on Docker for containerization. If you haven't already, please [download and install Docker](https://www.docker.com/products/docker-desktop/). Una vez instalado Docker, asegúrate de que esté en funcionamiento.
 
-En el archivo "docker.compose-yml" configuramos un usuario y contraseña:
+In the "docker.compose-yml" file, you'll find configurations for setting up a PostgreSQL container with user and password settings. Here's an example:
+
 ```javascript
 ´version: '3.3'
 services:
@@ -19,8 +34,8 @@ services:
     image: postgres:13
     environment:
       - POSTGRES_DB=tasking
-      - POSTGRES_USER=diego #podés poner tu nombre
-      - POSTGRES_PASSWORD=1234admin #debes elegir una contraseña
+      - POSTGRES_USER=diego # You can use your name
+      - POSTGRES_PASSWORD=1234admin # Choose a password
     ports:
       - 5432:5432
     volumes:
@@ -28,16 +43,23 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     environment:
-      - PGADMIN_DEFAULT_EMAIL=admin@mail.com #ponemos un correo cualquiera
-      - PGADMIN_DEFAULT_PASSWORD=root #ponemos una contraseña
+      - PGADMIN_DEFAULT_EMAIL=admin@mail.com # Use any email
+      - PGADMIN_DEFAULT_PASSWORD=root # Set a password
     ports:
       - 5050:80´
 ```
-## Instalación de dependencias
+
+***
+
+## Dependency installation
+To install the necessary dependencies for Tasking, run the following command:
+
 ``` npm install ```
 
-## Variables de entorno
-Se debe crear un archivo ".env" y agregar tus variables de entorno con la siguiente sintaxis:
+***
+
+## Environment variables
+Tasking relies on some environment variables. You should create a ".env" file in the project's root directory and define these variables. Here's an example of a ".env" file with explanations:
 ```
 PORT=3000
 POSTGRES_USER="diego" 
@@ -53,29 +75,41 @@ JWT_SECRET=""
 JWT_SECRET_RECOVERY=""
 ```
 
-### Para las variables
+- The variables starting with POSTGRES should match the data specified in the "docker-compose.yml" file.
 
-Las que empiezan con POSTGRES debemos rellenar con lo datos que establecimos en el archivo "docker-compose.yml"
+- For POSTGRES_URL, follow this format: postgres://POSTGRES_USER:POSTGRES_PASSWORD@POSTGRES_HOST:POSTGRES_PORT/POSTGRES_NAME.
 
-- POSTGRES_URL: la url se arma de la siguiente manera postgres://POSTGRES_USER:POSTGRES_PASSWORD@POSTGRES_HOST:POSTGRES_PORT/POSTGRES_NAME
+- You should set your own chosen API_KEY.
 
-- API_KEY: debemos establecer nosotros una clave a elección
+- JWT_SECRET and JWT_SECRET_RECOVERY should have unique keys. You can generate them [here](https://keygen.io/#fakeLink/).
 
-- JWT_SECRET y JWT_SECRET_RECOVERY: debemos establecer una clave para cada variable, lo podemos hacer con el siguiente link [generar clave](https://keygen.io/#fakeLink/)
+#### Email sending
+To configure email sending, ensure you have a Google account linked to your phone number and 2-Step Verification enabled in "Account Management" ⇒ "Security" ⇒ "Google Access." Then, go to "App Passwords" and add 'NodeApp.'
 
-#### Envío de email
+- GGMAIL: Use the email for which you generated the application password.
 
-Debemos tener una cuenta de google vinculada con nuestro teléfono y un número de teléfono. Y en “administrar cuenta” ⇒ seguridad ⇒ acceso a google debemos tener activada la opción de “verificación en 2 pasos”
+- GGKEY: Use the generated password; do not share it with anyone.
 
-Luego entramos en “contraseña de aplicaciones y agregamos a ‘NodeApp’”
-- GGMAIL: aquí ponemos el email con el cual generamos la contraseña de aplicación
-- GGKEY: aquí ponemos la contraseña generada, no la compartas con nadie!
+***
 
-# Iniciar contenedor en Docker
+# Running Docker containers
+To start the Docker containers for PostgreSQL and PGAdmin, use the following commands:
+
 ```
 docker-compose up -d postgres
 docker-compose up -d pgadmin
 ```
-# Iniciar proyecto
+
+***
+
+# Starting the project
+To start the project, use the following command:
+
 ```npm run dev```
+
+This command will launch the API, and you can begin using it as intended.
+
+***
+
+This documentation should provide you with the necessary information to set up and use Tasking-Backend. If you have more questions or encounter issues, feel free to request assistance.
 
