@@ -6,12 +6,12 @@ Welcome to the Tasking backend documentation, where you will find essential info
 ***
 
 ## Table of contents
-[Clone the project](#clone-the-project)
-[Docker setup](#docker-setup)
-[Dependency installation](#dependency-installation)
-[Environment variables](#environment-variables)
-[Running Docker containers](#Running-Docker-containers)
-[Starting the project](#Starting-the-project)
+- [Clone the project](#clone-the-project)
+- [Docker setup](#docker-setup)
+- [Dependency installation](#dependency-installation)
+- [Environment variables](#environment-variables)
+- [Running Docker containers](#Running-Docker-containers)
+- [Starting the project](#Starting-the-project)
 
 ***
 
@@ -23,7 +23,7 @@ To get started, you'll need to clone the project repository into your desired di
 ***
 
 ## Docker setup
-Tasking relies on Docker for containerization. If you haven't already, please [download and install Docker](https://www.docker.com/products/docker-desktop/). Una vez instalado Docker, asegúrate de que esté en funcionamiento.
+Tasking relies on Docker for containerization. If you haven't already, please [download and install Docker](https://www.docker.com/products/docker-desktop/). Once Docker is installed, ensure that it's running.
 
 In the "docker.compose-yml" file, you'll find configurations for setting up a PostgreSQL container with user and password settings. Here's an example:
 
