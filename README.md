@@ -4,7 +4,7 @@ API REST con Express.js conectada a base de datos PostgreSQL mediante contenedor
 ## Clonación del proyecto
 En primer lugar hay que clonar el proyecto en el directorio que desees
 
-```git clone https://github.com/diegonac/tasking-backend.git```
+```git clone https://github.com/diegonacimiento/tasking-backend.git```
 
 ## Docker
 Es necesario tener instalado Docker, [descargar Docker](https://www.docker.com/products/docker-desktop/)
