@@ -4,12 +4,12 @@ Bienvenido a la documentación del backend de Tasking, donde encontrarás inform
 ***
 
 ## Tabla de contenidos
-[Clonación del proyecto](#clonación-del-proyecto)
-[Configuración de Docker](#configuración-de-docker)
-[Instalación de dependencias](#instalación-de-dependencias)
-[Variables de entorno](#variables-de-entorno)
-[Ejecución de contenedores Docker](#ejecución-de-contenedores-docker)
-[Inicio del proyecto](#inicio-del-proyecto)
+- [Clonación del proyecto](#clonación-del-proyecto)
+- [Configuración de Docker](#configuración-de-docker)
+- [Instalación de dependencias](#instalación-de-dependencias)
+- [Variables de entorno](#variables-de-entorno)
+- [Ejecución de contenedores Docker](#ejecución-de-contenedores-docker)
+- [Inicio del proyecto](#inicio-del-proyecto)
 
 ***
 
