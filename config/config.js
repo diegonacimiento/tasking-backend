@@ -15,5 +15,6 @@ const config = {
   ggKey: process.env.GGKEY,
   jwtSecretRecovery: process.env.JWT_SECRET_RECOVERY,
   dbUrl: process.env.POSTGRES_URL,
+  frontendUrl: process.env.URL_FRONTEND,
 };
 export { config };

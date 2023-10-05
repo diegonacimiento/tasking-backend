@@ -66,12 +66,12 @@ class authService {
 
     const token = jwt.sign(payload, config.jwtSecretRecovery, { expiresIn: "15 min" });
 
-    const link = `https://tasking-dn.vercel.app/recovery-change-password?token=${token}`;
+    const link = `${config.frontendUrl}/recovery-change-password?token=${token}`;
 
     await service.update(user.id, {recoveryToken: token});
 
     const mail = {
-      from: "diegonacimientoJWT@gmail.com",
+      from: config.ggMail,
       to: `${user.email}`,
       subject: "Recuperación de contraseña",
       html: `<b>Hola, para recuperar su contraseña entre en el siguiente link: ${link}</b>`
